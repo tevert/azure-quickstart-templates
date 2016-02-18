@@ -27,11 +27,11 @@ apachectl restart
 logger "Done installing WordPress; beginning configuration"
 
 # Grab the WordPress CLI utility and install it (http://wp-cli.org/)
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp
+curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp
 chmod +x /usr/local/bin/wp
 
 # Create the base site
-wp core install --url="http://localhost/wordpress/" --title="Main Wordpress Site" --admin_user="$1" --admin_password="$2" --admin_email="$1@changeme.please"
+sudo -u www-data wp core install --url="http://localhost/wordpress/" --title="Main Wordpress Site" --admin_user="$1" --admin_password="$2" --admin_email="$1@changeme.please" --path=/var/www/html/wordpress
 
 # Enable multi-site
 
