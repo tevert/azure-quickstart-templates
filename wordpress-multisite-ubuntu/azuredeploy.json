@@ -200,7 +200,7 @@
           ]
         },
         "protectedSettings": {
-          "commandToExecute": "[concat('sh install_wordpress.sh ', parameters('adminUsername'), parameters('adminPassword'), parameters('mySqlPassword'))]"
+          "commandToExecute": "[concat('sh install_wordpress.sh ', parameters('adminUsername'), parameters('adminPassword'), parameters('mySqlPassword'), parameters('vmDnsName'), parameters('location'))]"
         }
       }
     }

@@ -31,7 +31,9 @@ sudo curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.p
 sudo chmod +x /usr/local/bin/wp
 
 # Create the base site
-sudo -u www-data wp core install --url="http://localhost/wordpress/" --title="Main Wordpress Site" --admin_user="$1" --admin_password="$2" --admin_email="$1@changeme.please" --path=/var/www/html/wordpress
+serverRegion=$(echo -e "$5" | tr -d '[[:space:]]' | tr '[:upper:]' '[:lower:]')
+serverUrl="http://$4.$serverRegion.cloudapp.azure.com/wordpress/"
+sudo -u www-data wp core install --url="$serverUrl" --title="Main Wordpress Site" --admin_user="$1" --admin_password="$2" --admin_email="$1@example.com" --path=/var/www/html/wordpress
 
 # Enable multi-site
 
