@@ -33,7 +33,11 @@ sudo chmod +x /usr/local/bin/wp
 # Create the base site
 serverRegion=$(echo -e "$5" | tr -d '[[:space:]]' | tr '[:upper:]' '[:lower:]')
 serverUrl="http://$4.$serverRegion.cloudapp.azure.com/wordpress/"
-sudo -u www-data wp core install --url="$serverUrl" --title="Main Wordpress Site" --admin_user="$1" --admin_password="$2" --admin_email="$1@example.com" --path=/var/www/html/wordpress
+siteName="Main Wordpress Site"
+echo "Tyler echo: Creating wordpress site at $serverUrl named $siteName with admin_user $1 and password $2"
+logger "Tyler logger: Creating wordpress site at $serverUrl named $siteName with admin_user $1 and password $2"
+sudo -u www-data wp core install --url="$serverUrl" --title="$siteName" --admin_user="$1" --admin_password="$2" --admin_email="$1@example.com" --path=/var/www/html/wordpress
+
 
 # Enable multi-site
 
