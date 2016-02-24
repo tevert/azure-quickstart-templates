@@ -31,7 +31,7 @@ sudo curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.p
 sudo chmod +x /usr/local/bin/wp
 
 # Create the base site
-serverRegion=$(echo -e "$5" | tr -d '[[:space:]]' | tr '[:upper:]' '[:lower:]')
+serverRegion=$(echo "$5" | tr -d '[[:space:]]' | tr '[:upper:]' '[:lower:]')
 serverUrl="http://$4.$serverRegion.cloudapp.azure.com/wordpress/"
 siteName="Main Wordpress Site"
 echo "Tyler echo: Creating wordpress site at $serverUrl named $siteName with admin_user $1 and password $2"
