@@ -35,6 +35,6 @@ serverRegion=$(echo "$5" | tr -d '[[:space:]]' | tr '[:upper:]' '[:lower:]')
 serverUrl="http://$4.$serverRegion.cloudapp.azure.com/wordpress/"
 siteName="Main Wordpress Site"
 echo "Creating wordpress site at $serverUrl named $siteName with admin username $1"
-wp core multisite-install --url="$serverUrl" --title="$siteName" --admin_user="$1" --admin_password="$2" --admin_email="$1@example.com" --skip-email --path=/var/www/html/wordpress --base=/wordpress
+sudo -u www-data wp core multisite-install --url="$serverUrl" --title="$siteName" --admin_user="$1" --admin_password="$2" --admin_email="$1@example.com" --skip-email --path=/var/www/html/wordpress --base=/wordpress
 
 echo "Done configuring"
