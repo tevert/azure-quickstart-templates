@@ -2,7 +2,7 @@
 
 apt-get -y update
 
-logger "Installing WordPress"
+echo "Installing WordPress"
 
 # Set up a silent install of MySQL
 dbpass=$3
@@ -24,7 +24,7 @@ mv /etc/wordpress/config-localhost.php /etc/wordpress/config-default.php
 # Restart Apache
 apachectl restart
 
-logger "Done installing WordPress; beginning configuration"
+echo "Done installing WordPress; beginning configuration"
 
 # Grab the WordPress CLI utility and install it (http://wp-cli.org/)
 sudo curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp
@@ -34,11 +34,7 @@ sudo chmod +x /usr/local/bin/wp
 serverRegion=$(echo "$5" | tr -d '[[:space:]]' | tr '[:upper:]' '[:lower:]')
 serverUrl="http://$4.$serverRegion.cloudapp.azure.com/wordpress/"
 siteName="Main Wordpress Site"
-echo "Tyler echo: Creating wordpress site at $serverUrl named $siteName with admin_user $1 and password $2"
-logger "Tyler logger: Creating wordpress site at $serverUrl named $siteName with admin_user $1 and password $2"
-sudo -u www-data wp core install --url="$serverUrl" --title="$siteName" --admin_user="$1" --admin_password="$2" --admin_email="$1@example.com" --path=/var/www/html/wordpress
+echo "Creating wordpress site at $serverUrl named $siteName with admin username $1"
+wp core multisite-install --url="$serverUrl" --title="$siteName" --admin_user="$1" --admin_password="$2" --admin_email="$1@example.com" --skip-email --path=/var/www/html/wordpress --base=/wordpress
 
-
-# Enable multi-site
-
-logger "Done configuring"
+echo "Done configuring"
